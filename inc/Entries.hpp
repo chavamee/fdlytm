@@ -3,7 +3,7 @@
 
 #include "ncf/Menu.hpp"
 #include "ncf/TextView.hpp"
-#include "Feedly.hpp"
+#include "fdly.hpp"
 #include <iostream>
 #include <fstream>
 

@@ -2,7 +2,7 @@
 #define APPLICATION_CTG_MENU_H_
 
 #include "ncf/Menu.hpp"
-#include "EntriesMenu.hpp"
+#include "Entries.hpp"
 #include "fdly.hpp"
 
 class Categories : public ncf::Menu {
