@@ -1,9 +1,8 @@
 #ifndef APPLICATION_CTG_MENU_H_
 #define APPLICATION_CTG_MENU_H_
 
-#include "ncf/Menu.hpp"
+#include <ncf/Menu.hpp>
 #include "Entries.hpp"
-#include "fdly.hpp"
 
 class Categories : public ncf::Menu {
     public:

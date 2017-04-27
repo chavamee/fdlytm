@@ -9,7 +9,7 @@ Entries::Entries(TextView& view) :
 {
 }
 
-void Entries::showPreview(const string& preview)
+void Entries::ShowPreview(const string& preview)
 {
     string contentDumpPath = "/tmp/termfeed.content.dump.html";
     ofstream sample(contentDumpPath);

@@ -5,8 +5,6 @@
 #include "ncf/Row.hpp"
 #include "ncf/Column.hpp"
 
-#include "Feedly.hpp"
-
 #include "CategoryMenu.hpp"
 #include "EntriesMenu.hpp"
 

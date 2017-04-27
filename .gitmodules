@@ -1,0 +1,12 @@
+[submodule "ext/ncframe"]
+	path = ext/ncframe
+	url = https://github.com/chavamee/ncframe.git
+[submodule "ext/cpr"]
+	path = ext/cpr
+	url = https://github.com/whoshuu/cpr
+[submodule "ext/fdlypp"]
+	path = ext/fdlypp
+	url = https://github.com/chavamee/fdlypp
+[submodule "ext/json"]
+	path = ext/json
+	url = https://github.com/nlohmann/json
