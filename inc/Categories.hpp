@@ -1,19 +1,12 @@
 #ifndef APPLICATION_CTG_MENU_H_
 #define APPLICATION_CTG_MENU_H_
 
-#include <ncf/Menu.hpp>
 #include "Entries.hpp"
+#include <ncf/Menu.hpp>
 
 class Categories : public ncf::Menu {
     public:
-        Categories();
-
-        Categories(Fdly& server, ncf::Menu& entriesMenu) :
-            Menu(),
-            m_entriesMenu {entriesMenu},
-            m_server {server}
-        {
-        }
+        Categories(Fdly& server, ncf::Menu& entriesMenu);
 
         virtual ~Categories();
 
@@ -24,7 +17,7 @@ class Categories : public ncf::Menu {
         int onKeyEvent(int ch) override;
 
     private:
-        Menu& m_entriesMenu = nullptr;
+        Menu& m_entriesMenu;
         Fdly& m_server;
         std::string lastReadEntryId = "";
 };

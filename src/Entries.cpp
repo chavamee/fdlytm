@@ -29,5 +29,5 @@ void Entries::ShowPreview(const string& preview)
         }
         pclose(stream);
     }
-    m_previewTextView->setContent(content);
+    m_previewTextView.setContent(content);
 }

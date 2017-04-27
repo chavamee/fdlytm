@@ -3,8 +3,9 @@
 using namespace std;
 using namespace ncf;
 
-Categories::Categories() :
-    Menu()
+Categories::Categories(Fdly& server, Menu& entriesMenu) :
+    m_entriesMenu {entriesMenu},
+    m_server {server}
 {
 }
 
@@ -12,34 +13,31 @@ Categories::~Categories()
 {
 }
 
-void Categories::onItemAction(Menu::Item* item item) override
+void Categories::onItemAction(Menu::Item* item)
 {
-    auto entries = m_server->Entries(item->description(), false, 100);
-    if (not entries.empty()) {
-        lastReadEntryId = entries.front().id;
-    }
+    auto entries = m_server.GetEntries(item->description(), false, 100);
 
     std::vector<ncf::Menu::Item*> items;
     for (auto& entry : entries) {
         items.push_back(new EntryItem(entry));
     }
 
-    m_entriesMenu->setItems(items);
+    m_entriesMenu.setItems(items);
 }
 
 void Categories::markCategoryRead()
 {
-    m_server->MarkCategoryAs(currentItem().description(), Actions::READ, lastReadEntryId);
+    m_server.MarkCategoryAs(currentItem().description(), Fdly::Category::Action::READ, lastReadEntryId);
 
-    auto entries = m_server->Entries(currentItem().description());
+    auto entries = m_server.GetEntries(currentItem().description());
     std::vector<ncf::Menu::Item*> items;
     for (auto& entry : entries) {
         items.push_back(new EntryItem{entry});
     }
-    m_entriesMenu->setItems(items);
+    m_entriesMenu.setItems(items);
 }
 
-int Categories::onKeyEvent(int ch) override
+int Categories::onKeyEvent(int ch)
 {
     switch(ch) {
         case 'r': markCategoryRead(); break;

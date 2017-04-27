@@ -30,7 +30,6 @@ else()
     endif()
 endif()
 
-set(EXT_PROJECTS_DIR ${PROJECT_SOURCE_DIR}/ext)
-add_subdirectory(${EXT_PROJECTS_DIR})
+add_subdirectory(ext)
 
 add_subdirectory(src)

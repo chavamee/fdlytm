@@ -1,9 +1,9 @@
 #ifndef APPLICATION_ENTRIES_MENU_H_
 #define APPLICATION_ENTRIES_MENU_H_
 
+#include <fdly.hpp>
 #include <ncf/Menu.hpp>
 #include <ncf/TextView.hpp>
-#include <fdly.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -11,14 +11,12 @@
 
 class Entries : public ncf::Menu {
     public:
-        using Menu::Menu;
-
-        Entries(ncf::TextView* view);
+        Entries(ncf::TextView& view);
 
         void ShowPreview(const std::string& preview);
 
     private:
-        ncf::TextView* m_previewTextView = nullptr;
+        ncf::TextView& m_previewTextView;
 };
 
 class EntryItem : public ncf::Menu::Item {
@@ -29,7 +27,7 @@ class EntryItem : public ncf::Menu::Item {
 
         bool action() override
         {
-            static_cast<Entries*>(menu())->ShowPreview(m_entry.content);
+            static_cast<Entries*>(menu())->ShowPreview(m_entry.Content);
             return true;
         }
 

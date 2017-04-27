@@ -1,12 +1,12 @@
-#include "fdlypp.hpp"
+#include <fdly.hpp>
 #include "ncf/Decorators.hpp"
 #include "ncf/TextView.hpp"
 #include "ncf/Application.hpp"
 #include "ncf/Row.hpp"
 #include "ncf/Column.hpp"
 
-#include "CategoryMenu.hpp"
-#include "EntriesMenu.hpp"
+#include "Categories.hpp"
+#include "Entries.hpp"
 
 #include <string>
 #include <iostream>
@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
     Row    top         {};
 
     TextView     prev        {};
-    EntriesMenu  entriesMenu {&prev};
-    CategoryMenu ctgMenu     {&server, &entriesMenu};
+    Entries    entriesMenu {prev};
+    Categories ctgMenu     {server, entriesMenu};
 
     ctgMenu.optionsOff(O_SHOWDESC);
     entriesMenu.optionsOff(O_SHOWDESC);
@@ -72,12 +72,12 @@ int main(int argc, char *argv[])
 
     vector<Menu::Item*> ctgItems;
     vector<Menu::Item*> entryItems;
-    auto categories = server.Categories();
+    auto categories = server.GetCategories();
     for (auto& ctg : categories) {
-        ctgItems.push_back(new Menu::Item(ctg.first, ctg.second));
+        ctgItems.push_back(new Menu::Item(ctg.Label, ctg.ID));
     }
 
-    auto entries = server.Entries("All");
+    auto entries = server.GetEntries("All");
     for (auto& entry : entries) {
         entryItems.push_back(new EntryItem(entry));
     }
