@@ -16,6 +16,8 @@ void Entries::ShowPreview(const string& preview)
 
     sample << preview;
 
+    sample.close();
+
     string command = "w3m -dump -cols " + to_string(COLS - 2) + " " + contentDumpPath;
     FILE* stream = popen(command.c_str(), "r");
 
@@ -23,7 +25,7 @@ void Entries::ShowPreview(const string& preview)
     if (stream) {
         char buffer[256];
         while (not feof(stream)) {
-            if (fgets(buffer, 256, stream) not_eq NULL) {
+            if (fgets(buffer, 256, stream)) {
                 content.append(buffer);
             }
         }
