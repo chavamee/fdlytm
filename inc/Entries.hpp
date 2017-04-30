@@ -3,7 +3,7 @@
 
 #include <fdly.hpp>
 #include <ncf/Menu.hpp>
-#include <ncf/TextView.hpp>
+#include <ncf/TextBox.hpp>
 
 #include <iostream>
 #include <fstream>
@@ -11,12 +11,12 @@
 
 class Entries : public ncf::Menu {
     public:
-        Entries(ncf::TextView& view);
+        Entries(ncf::TextBox& box);
 
         void ShowPreview(const std::string& preview);
 
     private:
-        ncf::TextView& m_previewTextView;
+        ncf::TextBox& m_previewTextBox;
 };
 
 class EntryItem : public ncf::Menu::Item {

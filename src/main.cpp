@@ -1,17 +1,17 @@
 #include <fdly.hpp>
-#include "ncf/Decorators.hpp"
-#include "ncf/TextView.hpp"
-#include "ncf/Application.hpp"
-#include "ncf/Row.hpp"
-#include "ncf/Column.hpp"
-
-#include "Categories.hpp"
-#include "Entries.hpp"
+#include <ncf/Decorators.hpp>
+#include <ncf/TextBox.hpp>
+#include <ncf/Application.hpp>
+#include <ncf/Row.hpp>
+#include <ncf/Column.hpp>
 
 #include <string>
 #include <iostream>
 #include <map>
 #include <algorithm>
+
+#include "Categories.hpp"
+#include "Entries.hpp"
 
 using namespace std;
 using namespace ncf;
@@ -26,7 +26,7 @@ void print_usage()
     cout << "   --user-id <User ID>" << endl;
 }
 
-int main(int argc, char *argv[])
+void process_flags(int argc, char** argv)
 {
     for (int i = 0; i < argc; i++) {
         if (strcmp(argv[i], "--api-key" ) == 0) {
@@ -41,7 +41,11 @@ int main(int argc, char *argv[])
             }
         }
     }
+}
 
+int main(int argc, char** argv)
+{
+    process_flags(argc, argv);
     if (g_UserID.empty() || g_APIKey.empty()) {
         print_usage();
         return 1;
@@ -61,14 +65,14 @@ int main(int argc, char *argv[])
     Column body        {};
     Row    top         {};
 
-    TextView     prev        {};
-    Entries    entriesMenu {prev};
+    TextBox    preview {};
+    Entries    entriesMenu {preview};
     Categories ctgMenu     {server, entriesMenu};
 
     ctgMenu.optionsOff(O_SHOWDESC);
     entriesMenu.optionsOff(O_SHOWDESC);
 
-    prev.canFocus = false;
+    preview.canFocus = false;
 
     vector<Menu::Item*> ctgItems;
     vector<Menu::Item*> entryItems;
@@ -89,9 +93,9 @@ int main(int argc, char *argv[])
     top.add(new ncf::Border(&ctgMenu));
 
     body.add(&top, 0);
-    body.add(new ncf::Border(&prev), 1);
+    body.add(new ncf::Border(&preview), 1);
 
-    prev.setContent("Hello, World!");
+    preview.setText("Hello, World!");
 
     app.setInitialContext(&ctgMenu);
 

@@ -3,9 +3,9 @@
 using namespace std;
 using namespace ncf;
 
-Entries::Entries(TextView& view) :
+Entries::Entries(TextBox& box) :
     Menu(),
-    m_previewTextView(view)
+    m_previewTextBox(box)
 {
 }
 
@@ -31,5 +31,5 @@ void Entries::ShowPreview(const string& preview)
         }
         pclose(stream);
     }
-    m_previewTextView.setContent(content);
+    m_previewTextBox.setText(content);
 }
