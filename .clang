@@ -1,0 +1,9 @@
+flags=-DDEBUG
+flags=-Wall
+flags=-Wextra
+flags=-Iinc
+flags=-Iext/cpr/include
+flags=-Iext/json/src
+flags=-Iext/fdlypp/src
+flags=-Iext/ncframe/ncf/inc
+flags=-std=c++14

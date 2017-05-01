@@ -1,0 +1,9 @@
+-DDEBUG
+-Wall
+-Wextra
+-Iinc
+-Iext/cpr/include
+-Iext/json/src
+-Iext/fdlypp/src
+-Iext/ncframe/ncf/inc
+-std=c++14
