@@ -95,8 +95,6 @@ int main(int argc, char** argv)
     body.add(&top, 0);
     body.add(new ncf::Border(&preview), 1);
 
-    preview.setText("Hello, World!");
-
     app.setInitialContext(&ctgMenu);
 
     body.draw();
